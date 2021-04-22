@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title class="flex">Discord Webhook Client</title>
+</head>
+<body>
+	<h1>Discord Webhook Client</h1>
+	<input type="text" name="webhook_url" id="webhook_url" placeholder="Webhook Url" class="flex" style="margin-top: -10ch;">
+	<input type="text" name="avatar_url" id="avatar_url" placeholder="Avatar Url (optional)" class="flex" style="margin-top: -5ch;">
+	<input type="text" name="username" id="username" placeholder="Username (optional)" class="flex" style="margin-top: 0ch;">
+	<input type="text" name="msg" id="msg" placeholder="Message" class="flex" style="margin-top: 5ch;">
+	<button id="send" class="flex" style="margin-top: 12ch; font-size: 2ch;">Send</button>
+	<label id="crdt">Longhirar © Copyright 2021</label>
+	<span id="crdt" style="margin-top:3ch;">Found a bug or is it broken? <a style="color: aqua;" href="https://github.com/longhirar">Click here</a> to help!</span>
+	<style type="text/css">
+		body {
+			background: #23272A;
+		}
+
+		h1 {
+			font-family: 'Arial';
+			font-size: 5em;
+			
+			color: white;
+
+			position: absolute;
+			left: 50%;
+			top: 1%;
+			transform: translate(-50%, 0px);
+		}
+
+		.flex {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+
+			background: #2C2F33;
+			color: white;
+
+			height: 5ch;
+			width: 50ch;
+		}
+
+		#crdt {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'arial';
+			color:white;
+
+			top:90%;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$('#send').on("click", () => {
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", $('#webhook_url').val(), true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(JSON.stringify({
+			    content: $('#msg').val(),
+			    avatar_url: $('#avatar_url').val(),
+			    username: $('#username').val()
+			}));
+		})
+	</script>
+</body>
+</html>
